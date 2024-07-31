@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mortage Repayment Calculator</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src='main.js'></script>
+</head>
+<body>
+    <div id="card">
+        <div id="right-section">
+            <h2>Mortage Calculator</h2>
+            <form method="get" id="mortage-form">
+                <div>
+                    <label for="mortage-amount"> Mortage Amount</label><br>
+                    <input type="text" name="Mortage Amount" id="mortage-amount">
+                </div>
+                <div>
+                    <div class="same-line">
+                        <label for="mortage-term"> Mortage Term</label><br>
+                        <input type="text" name="Mortage Term" id="mortage-term">
+                    </div>
+                    <div class="same-line">
+                        <label for="interest-rate"> Interest Rate</label><br>
+                        <input type="text" name="Interest Rate" id="interest-rate">
+                    </div>
+                </div>
+                <div>
+                    <fieldset id="mortage-type-selector">
+                        <legend>Mortage Type</legend>
+                        <label class="selector"><input type="radio" name="Repayment" value="repayment"> Repayment</label>
+                        <label class="selector"><input type="radio" name="interest-only" value="Ineterest Only"> Interest Only</label>
+                    </fieldset>
+                </div>
+            </form>
+            <button id="button">Calculate Repayments</button>
+        </div>
+        <div id="left-section">
+
+            <h2>Your results</h2>
+
+            <p id="guide-para">Your results are shown below based on the information provided. 
+                To adjust the results, edit the forn and click "calculate repayments" again.
+            </p>
+            
+            <div id="final-value">Your monthly repayments</div>
+        </div>
+    </div>
+</body>
+
+<style>
+    html{
+        box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+        box-sizing: inherit;
+    }
+
+    body{
+        background-color: hsl(202, 86%, 94%);
+    }
+
+    #card{
+        display: flex;
+        height: 450px;
+        width: 850px;
+        background-color: white;
+        margin-left: 20%;
+        margin-top: 7.5%;
+
+        border-radius: 5% 5% 5% 5%;
+
+        font-size: 16px;
+        font-family:  'Inter', sans-serif;
+    }
+
+    #right-section{
+        background-color: white;
+        width: 50%;
+        height: 100%;
+        padding-left: 25px;
+        padding-right: 20px;
+        border-radius: inherit;
+    }
+
+    .same-line {
+        display: inline-block;
+    }
+
+    #mortage-form {
+        height: auto;
+    }
+
+    #left-section{  
+        color: white;
+        background-color: hsl(202, 55%, 16%);
+        width: 50%;
+        height: 100%;
+        padding: 5px;
+        padding-left: 15px;
+
+        border-radius: 0% 5% 5% 20%;
+    }
+
+    #final-value{
+        margin: 50px;
+        margin-left: 25%;
+        margin-right: 25%;
+
+        border: 3px solid white;
+    }
+
+    #mortage-type-selector {
+        border: 0;
+        padding: 0px;
+    }
+
+    .selector {
+        display: block;
+        width: 95%;
+        border: 1px solid black;
+        margin: 5px 0;
+
+    }
+
+    #button {
+        width: 60%;
+        background-color: hsl(61, 70%, 52%);
+        color:  hsl(202, 55%, 16%);
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+        border: 0;
+        border-radius: 10% / 50%;
+    }
+
+</style>
+</html>

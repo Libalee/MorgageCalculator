@@ -39,14 +39,9 @@
             <button id="button">Calculate Repayments</button>
         </div>
         <div id="left-section">
-
-            <h2>Your results</h2>
-
-            <p id="guide-para">Your results are shown below based on the information provided. 
-                To adjust the results, edit the form and click "calculate repayments" again.
-            </p>
-            
-            <div id="final-value">Your monthly repayments</div>
+            <img src="illustration-empty.png" alt="A picture of a calculator" id="image"/>
+            <h2 id="left-section-title">Results shown here.</h2>
+            <p id="left-section-text">Complete the form and click "Calculate Repayments" to see what your monthly repayments would be.</p>
         </div>
     </div>
 </body>
@@ -98,8 +93,6 @@
         display: inline-block;
     }
 
-    
-
     #mortage-form {
         height: auto;
     }
@@ -113,14 +106,6 @@
         padding-left: 15px;
 
         border-radius: 0% 5% 5% 20%;
-    }
-
-    #final-value{
-        margin: 50px;
-        margin-left: 25%;
-        margin-right: 25%;
-
-        border: 3px solid white;
     }
 
     .form-box {
@@ -170,9 +155,8 @@
         border-radius: 4%;
         margin: 5px 0;
         padding: 7px;
-
+        font-weight: bold;
     }
-
 
     #button {
         width: 60%;
@@ -183,6 +167,37 @@
         margin-top: 20px;
         border: 0;
         border-radius: 10% / 50%;
+    }
+
+    #image {
+        margin-top: 6%;
+        margin-left: 16%;
+    }
+
+    #left-section-title {
+        font-size: 22px;
+        margin-left: 20%;
+    }
+
+    #left-section-text {
+        font-size: 15px;
+        text-align: center;
+        color: hsl(203, 41%, 72%);
+
+        margin-left: 2.5%;
+        margin-right: 4%;
+    }
+
+    .form-box:hover, .selector:hover, #button:hover {
+        cursor: pointer;
+    }
+
+    .selector:hover {
+        border-color: hsl(61, 70%, 52%);
+    }
+
+    #button:hover {
+        background-color: hsl(61, 70%, 70%);
     }
 
 </style>

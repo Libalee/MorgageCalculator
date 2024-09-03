@@ -229,7 +229,15 @@
         const mortAmountValue = document.getElementById(mortAmount).value;
         const mortTermValue = document.getElementById(mortTerm).value;
         const inteRateValue = document.getElementById(inteRate).value;
-        console.log(mortAmountValue + ', ' + mortTermValue + ', ' + inteRateValue);
+        let anualInterestRate = (inteRateValue / 100) / 12;
+        let totalNumberOfPayments = mortTermValue * 12;
+        
+        let numerator = anualInterestRate * (Math.pow((1 + anualInterestRate), totalNumberOfPayments));
+        let denominator = Math.pow((1 + anualInterestRate), totalNumberOfPayments) - 1;
+
+        let repaymentValue = mortAmountValue * ((numerator) / (denominator));
+        
+        console.log(repaymentValue);
     }
 </script>
 

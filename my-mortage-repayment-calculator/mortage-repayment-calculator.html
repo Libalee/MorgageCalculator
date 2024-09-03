@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Mortage Repayment Calculator</title>
+    <title>Mortgage Repayment Calculator</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -12,16 +12,18 @@
 <body>
     <div id="card">
         <div id="right-section">
-            <h2>Mortage Calculator</h2>
-            <form method="get" id="mortage-form">
+            <h2>Mortgage Calculator</h2>
+            <form method="get" id="mortgage-form">
                 <div>
-                    <label class="form-labels" for="mortage-amount"> Mortage Amount</label><br>
-                    <input type="text" name="Mortage Amount" id="mortage-amount" class="form-box">
+                    <label class="form-labels" for="mortgage-amount"> Mortgage Amount</label><br>
+                    <form id="form">
+                        <input type="text" name="Mortgage Amount" id="mortgage-amount" class="form-box">
+                    </form>
                 </div>
                 <div>
                     <div class="same-line">
-                        <label class="form-labels" for="mortage-term"> Mortage Term</label><br>
-                        <input type="text" name="Mortage Term" id="mortage-term" class="form-box">
+                        <label class="form-labels" for="mortgage-term"> Mortgage Term</label><br>
+                        <input type="text" name="Mortgage Term" id="mortgage-term" class="form-box">
                     </div>
                     <div class="same-line">
                         <label class="form-labels" for="interest-rate"> Interest Rate</label><br>
@@ -29,18 +31,22 @@
                     </div>
                 </div>
                 <div>
-                    <fieldset id="mortage-type-selector">
-                        <legend class="form-labels">Mortage Type</legend>
-                        <label class="selector"><input type="radio" name="Repayment" value="repayment"> Repayment</label>
-                        <label class="selector"><input type="radio" name="Repayment" value="Ineterest Only"> Interest Only</label>
+                    <fieldset id="mortgage-type-selector">
+                        <legend class="form-labels">Mortgage Type</legend>
+                        <label class="selector" id="selector1" onclick="changeSelected('selector1')">
+                            <input type="radio" name="Repayment" value="repayment" onclick="changeSelected(selector1)"> Repayment
+                        </label>
+                        <label class="selector" id="selector2" onclick="changeSelected('selector2')">
+                            <input type="radio" name="Repayment" value="Ineterest Only" onclick="changeSelected(selector2)"> Interest Only
+                        </label>
                     </fieldset>
                 </div>
             </form>
-            <button id="button">Calculate Repayments</button>
+            <button id="button" onclick="changeSelected('mortgage-amount', 'mortgage-term',  'interest-rate')">Calculate Repayments</button>
         </div>
         <div id="left-section">
             <img src="illustration-empty.png" alt="A picture of a calculator" id="image"/>
-            <h2 id="left-section-title">Results shown here.</h2>
+            <h2 id="left-section-title">Results shown here</h2>
             <p id="left-section-text">Complete the form and click "Calculate Repayments" to see what your monthly repayments would be.</p>
         </div>
     </div>
@@ -93,7 +99,7 @@
         display: inline-block;
     }
 
-    #mortage-form {
+    #mortgage-form {
         height: auto;
     }
 
@@ -117,7 +123,7 @@
         padding: 7px; 
     }
 
-    #mortage-amount{
+    #mortgage-amount{
         padding-left: 7%;
         background-image: url('https://i.imgur.com/BcOPiAa.png');
         background-position: 0px 0px;
@@ -125,7 +131,7 @@
         background-repeat: no-repeat;
     }
 
-    #mortage-term {
+    #mortgage-term {
         padding-right: 35%;
         background-image: url('https://i.imgur.com/ylZKJjT.png');
         background-position: 100% 0px;
@@ -143,12 +149,12 @@
         background-repeat: no-repeat;
     }
 
-    #mortage-type-selector {
+    #mortgage-type-selector {
         border: 0;
         padding: 0px;
     }
 
-    .selector {
+    .selector, .selected {
         display: block;
         width: 95%;
         border: 1px solid black;
@@ -158,11 +164,19 @@
         font-weight: bold;
     }
 
+    .selected {
+        background-color: hsl(61, 70%, 85%);
+        border-color: hsl(61, 70%, 52%);
+    }
+
+
+
     #button {
         width: 60%;
         background-color: hsl(61, 70%, 52%);
         color:  hsl(202, 55%, 16%);
         text-align: center;
+        font-weight: bold;
         padding: 10px;
         margin-top: 20px;
         border: 0;
@@ -175,12 +189,12 @@
     }
 
     #left-section-title {
-        font-size: 22px;
-        margin-left: 20%;
+        font-size: 18px;
+        text-align: center;
     }
 
     #left-section-text {
-        font-size: 15px;
+        font-size: 14px;
         text-align: center;
         color: hsl(203, 41%, 72%);
 
@@ -203,7 +217,20 @@
 </style>
 
 <script>
-    
+    function changeSelected(selectedOption) {
+        // Removes the old class
+        document.getElementById('selector1').classList.remove('selected');
+        document.getElementById('selector2').classList.remove('selected');
+        // Adds the new class with a new design
+        document.getElementById(selectedOption).classList.add('selected');
+    }
+
+    function changeSelected(mortAmount, mortTerm, inteRate) {
+        const mortAmountValue = document.getElementById(mortAmount).value;
+        const mortTermValue = document.getElementById(mortTerm).value;
+        const inteRateValue = document.getElementById(inteRate).value;
+        console.log(mortAmountValue + ', ' + mortTermValue + ', ' + inteRateValue);
+    }
 </script>
 
 </html>

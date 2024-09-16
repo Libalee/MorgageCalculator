@@ -34,15 +34,22 @@
                     <fieldset id="mortgage-type-selector">
                         <legend class="form-labels">Mortgage Type</legend>
                         <label class="selector" id="selector1" onclick="changeSelected('selector1')">
-                            <input type="radio" name="Repayment" value="repayment" onclick="changeSelected(selector1)"> Repayment
+                            <input type="radio" name="Repayment" value="repayment" onclick="changeSelected('selector1')"> Repayment
                         </label>
                         <label class="selector" id="selector2" onclick="changeSelected('selector2')">
-                            <input type="radio" name="Repayment" value="Ineterest Only" onclick="changeSelected(selector2)"> Interest Only
+                            <input type="radio" name="Repayment" value="Ineterest Only" onclick="changeSelected('selector2')"> Interest Only
                         </label>
                     </fieldset>
                 </div>
             </form>
-            <button id="button" onclick="changeSelected('mortgage-amount', 'mortgage-term',  'interest-rate')">Calculate Repayments</button>
+            <button id="button" 
+            onclick="calculateMortage(
+                    'mortgage-amount', 
+                    'mortgage-term',  
+                    'interest-rate', 
+                    'selector1', 
+                    'selector2')">
+            Calculate Repayments</button>
         </div>
         <div id="left-section">
             <img src="illustration-empty.png" alt="A picture of a calculator" id="image"/>
@@ -193,13 +200,41 @@
         text-align: center;
     }
 
-    #left-section-text {
+    #left-section-text, #result-text {
         font-size: 14px;
-        text-align: center;
+        text-align: justify;
         color: hsl(203, 41%, 72%);
 
         margin-left: 2.5%;
         margin-right: 4%;
+    }
+
+    #result-text{
+        font-size: 5pxpx;
+
+        margin: 0px;
+    }
+
+    .result-box {
+        height: 225px;
+
+        margin: 12px;
+
+        border: 2px solid  hsl(202, 55%, 10%);
+        border-top-color: hsl(61, 70%, 52%);
+        border-radius: 2%;
+
+        padding: 15px;
+
+        background-color: hsl(202, 55%, 10%);
+    }
+
+    #final-monthly-value {
+        color: hsl(61, 70%, 52%);
+        font-size: 32px;
+
+        margin-top: 10px;
+        margin-bottom: 15px;
     }
 
     .form-box:hover, .selector:hover, #button:hover {
@@ -225,7 +260,7 @@
         document.getElementById(selectedOption).classList.add('selected');
     }
 
-    function changeSelected(mortAmount, mortTerm, inteRate) {
+    function calculateMortage(mortAmount, mortTerm, inteRate) {
         const mortAmountValue = document.getElementById(mortAmount).value;
         const mortTermValue = document.getElementById(mortTerm).value;
         const inteRateValue = document.getElementById(inteRate).value;
@@ -236,8 +271,28 @@
         let denominator = Math.pow((1 + anualInterestRate), totalNumberOfPayments) - 1;
 
         let repaymentValue = mortAmountValue * ((numerator) / (denominator));
+        let totalRepayment = repaymentValue * totalNumberOfPayments;
+        let interestOnly = repaymentValue - mortAmount;
+
+        let leftSiteHTML = `
+        <h2 id="left-section-title">Your results</h2>
+
+        <p id="left-section-text"> Your results are shown bellow based on the information you provided.
+            To adjust the results, edit the form and click "Calculate Repayments" again.</p>
         
-        console.log(repaymentValue);
+        <div class="result-box">
+            <div>
+                <p id="result-text"> Your monthly repayments </p>
+                <h2 id="final-monthly-value"> ${repaymentValue.toLocaleString("en-US", {style:"currency", currency: "GBP"})} </h2>
+            </div>
+            <div>
+                <p id="result-text"> Total you'll repay over the term </p>
+                <h2 id="final-total-value"> ${totalRepayment.toLocaleString("en-US", {style:"currency", currency: "GBP"})} </h2>
+            </div>
+        </div>
+        `;
+
+        document.getElementById('left-section').innerHTML = leftSiteHTML;
     }
 </script>
 
